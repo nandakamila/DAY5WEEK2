@@ -108,6 +108,101 @@ function addElement(arr,newElement) {
 addElement([1, 2, 3, 4], 7);
 addElement([1, 2, 3, 4], 3);
 
+// 1. Write a function to remove all odd numbers in an array and return a new array that contains even numbers only
+// Example : numbers = [1, 2, 3, 4, 5, 6] → [2, 4, 6]
+function removeOddNumbers(arr) {
+    let evenNumbers = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            evenNumbers.push(arr[i]);
+        }
+    }
+    return evenNumbers;
+}
+
+console.log(removeOddNumbers([1, 2, 3, 4, 5, 6])); // Output: [2, 4, 6]
+
+/*
+2. Write a function to insert multiple given integer (not an array) to an array and have a maximum size input. The 
+array can only have a maximum size from a given input. (if the maximum size of the given input is 5 than the 
+array can only contain 5 elements). 
+Example : maxSize = 5, given integers is 5, 10, 24, 3, 6, 7, 8 -> [5, 10, 24, 3, 6]
+*/
+ 
+function insertIntegers(maxSize, ...integers) {
+    let result = [];
+    for (let i = 0; i < integers.length && result.length < maxSize; i++) {
+        result.push(integers[i]);
+    }
+    return result;
+}
+
+console.log(insertIntegers(5, 5, 10, 24, 3, 6, 7, 8)); // Output: [5, 10, 24, 3, 6]
+
+// 3. Write a function that will combine 2 given array into one array
+// a. Example : arr1 = [1, 2, 3], arr2 = [4, 5, 6] → [1, 2, 3, 4, 5, 6]
+
+function combineArrays(arr1, arr2) {
+    let result = [];
+    for (let i = 0; i < arr1.length; i++) {
+        result.push(arr1[i]);
+    }
+    for (let i = 0; i < arr2.length; i++) {
+        result.push(arr2[i]);
+    }
+    return result;
+}
+
+console.log(combineArrays([1, 2, 3], [4, 5, 6])); // Output: [1, 2, 3, 4, 5, 6]
+
+// 4. Write a function to find duplicate values in an array
+// a. Example : arr = [1, 2, 2, 2, 3, 3, 4, 5, 5] → [2, 3, 5] 
+
+function findDuplicates(arr) {
+    let duplicates = [];
+    let frequency = {};
+    for (let i = 0; i < arr.length; i++) {
+        let num = arr[i];
+        frequency[num] = frequency[num] ? frequency[num] + 1 : 1;
+    }
+    for (let key in frequency) {
+        if (frequency[key] > 1) {
+            duplicates.push(parseInt(key));
+        }
+    }
+    return duplicates;
+}
+
+console.log(findDuplicates([1, 2, 2, 2, 3, 3, 4, 5, 5])); // Output: [2, 3, 5]
+
+// 5. Write a function to find the difference in 2 given array
+// Example : arr1 = [1, 2, 3, 4, 5], arr2 = [3, 4, 5, 6, 7] → [1, 2, 6, 7] 
+
+function findDifference(arr1, arr2) {
+    let difference = [];
+    let frequency = {};
+    for (let i = 0; i < arr1.length; i++) {
+        let num = arr1[i];
+        frequency[num] = frequency[num] ? frequency[num] + 1 : 1;
+    }
+    for (let i = 0; i < arr2.length; i++) {
+        let num = arr2[i];
+        if (!frequency[num]) {
+            difference.push(num);
+        }
+    }
+    for (let i = 0; i < arr1.length; i++) {
+        let num = arr1[i];
+        if (!frequency[num]) {
+            difference.push(num);
+        }
+    }
+    return difference;
+}
+
+console.log(findDifference([1, 2, 3, 4, 5], [3, 4, 5, 6, 7])); // Output: [1, 2, 6, 7]
+
+
 /*
 1.Problem : Based on the array below write a function that will return primitive data types only. let 
   Example : arr = [1, [], undefined, {}, "string", {}, []];
